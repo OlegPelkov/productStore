@@ -1,0 +1,46 @@
+package app.controller;
+
+import app.data.web.dto.ProductDTO;
+import app.data.web.dto.RequestDTO;
+import app.data.web.dto.ResponseDTO;
+import app.data.web.services.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
+
+@RestController
+public class ProductController {
+
+    @Autowired
+    private ProductService productService;
+
+    @PostMapping(value = "/createProduct", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity createProduct(@Valid @RequestBody RequestDTO requestDTO) {
+        try {
+            productService.createProduct(requestDTO.getProductDTO());
+        } catch (Exception e) {
+            System.out.println(e);
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/findProduct", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity findProduct(@Valid @RequestBody RequestDTO requestDTO) {
+        try {
+            //return ResponseEntity.ok(productService.findProductsByName(product.getName()));
+            return ResponseEntity.ok(new ResponseDTO(productService.findProductsByParams(requestDTO.getProductDTO().getProperties())));
+        } catch (Exception e) {
+            System.out.println(e);
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+}
