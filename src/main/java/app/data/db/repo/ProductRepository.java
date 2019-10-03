@@ -10,7 +10,7 @@ import java.util.List;
 public interface ProductRepository extends CrudRepository<ProductEntity, Long>,
         ProductPropertiesRepository<ProductEntity> {
 
-    String getDescriptionById(int id) throws Exception;
+    ProductEntity findById(int id) throws Exception;
 
     List<ProductEntity> findByNameContaining(String nameStartsWith);
 

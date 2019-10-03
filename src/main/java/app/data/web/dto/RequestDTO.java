@@ -9,7 +9,6 @@ public class RequestDTO {
 
     private boolean findById;
     private boolean findOnlyByName;
-    private boolean findOnlyByParams;
 
     @NotNull(message = "Name may not be null")
     private ProductDTO productDTO;
@@ -28,14 +27,6 @@ public class RequestDTO {
 
     public void setFindOnlyByName(boolean findOnlyByName) {
         this.findOnlyByName = findOnlyByName;
-    }
-
-    public boolean isFindOnlyByParams() {
-        return findOnlyByParams;
-    }
-
-    public void setFindOnlyByParams(boolean findOnlyByParams) {
-        this.findOnlyByParams = findOnlyByParams;
     }
 
     public ProductDTO getProductDTO() {

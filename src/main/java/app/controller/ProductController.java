@@ -1,6 +1,5 @@
 package app.controller;
 
-import app.data.web.dto.ProductDTO;
 import app.data.web.dto.RequestDTO;
 import app.data.web.dto.ResponseDTO;
 import app.data.web.services.ProductService;
@@ -34,8 +33,7 @@ public class ProductController {
     @PostMapping(value = "/findProduct", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity findProduct(@Valid @RequestBody RequestDTO requestDTO) {
         try {
-            //return ResponseEntity.ok(productService.findProductsByName(product.getName()));
-            return ResponseEntity.ok(new ResponseDTO(productService.findProductsByParams(requestDTO.getProductDTO().getProperties())));
+            return ResponseEntity.ok(new ResponseDTO(productService.findProducts(requestDTO)));
         } catch (Exception e) {
             System.out.println(e);
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
