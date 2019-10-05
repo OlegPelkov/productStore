@@ -7,18 +7,18 @@ import javax.validation.constraints.NotNull;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class RequestDTO {
 
-    private boolean findById;
+    private boolean findOnlyByProperties;
     private boolean findOnlyByName;
 
     @NotNull(message = "Name may not be null")
     private ProductDTO productDTO;
 
-    public boolean isFindById() {
-        return findById;
+    public boolean isFindOnlyByProperties() {
+        return findOnlyByProperties;
     }
 
-    public void setFindById(boolean findById) {
-        this.findById = findById;
+    public void setFindOnlyByProperties(boolean findOnlyByProperties) {
+        this.findOnlyByProperties = findOnlyByProperties;
     }
 
     public boolean isFindOnlyByName() {
