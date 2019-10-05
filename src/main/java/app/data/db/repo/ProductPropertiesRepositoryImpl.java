@@ -1,8 +1,11 @@
 package app.data.db.repo;
 
 import app.data.db.entity.ProductEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -21,6 +24,8 @@ public class ProductPropertiesRepositoryImpl implements ProductPropertiesReposit
     private EntityManager em;
 
     public List<ProductEntity> findProductsByParams(Map<String, String> params) throws Exception {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory( "hikePu" );
+        em = entityManagerFactory.createEntityManager();
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<ProductEntity> criteria = cb.createQuery(ProductEntity.class);
         Root<ProductEntity> entity = criteria.from(ProductEntity.class);

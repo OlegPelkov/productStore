@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.data.web.dto.ProductIdDTO;
 import app.data.web.dto.RequestDTO;
 import app.data.web.dto.ResponseDTO;
 import app.data.web.services.ProductService;
@@ -26,12 +27,13 @@ public class ProductController {
     @PostMapping(value = "/createProduct", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity createProduct(@Valid @RequestBody RequestDTO requestDTO) {
         try {
-            productService.createProduct(requestDTO.getProductDTO());
+            String productID = productService.createProduct(requestDTO.getProductDTO()).getId().toString();
+            ProductIdDTO productIdDTO = new ProductIdDTO(productID);
+            return ResponseEntity.ok(productIdDTO);
         } catch (Exception e) {
             LOG.error("{}",e);
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity(HttpStatus.OK);
     }
 
     @PostMapping(value = "/findProduct", produces = {MediaType.APPLICATION_JSON_VALUE})
