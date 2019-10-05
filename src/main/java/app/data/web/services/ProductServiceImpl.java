@@ -24,9 +24,14 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private ProductIdServiceImpl productIdService;
+
     @Override
     @Transactional
     public void createProduct(ProductDTO productDTO) throws Exception {
+        ProductEntity productEntity = modelMapper.map(productDTO, ProductEntity.class);
+       // productEntity.setId(productIdService.getNext());
         productRepository.save(modelMapper.map(productDTO, ProductEntity.class));
     }
 

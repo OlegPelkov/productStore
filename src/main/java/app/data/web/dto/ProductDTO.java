@@ -13,9 +13,6 @@ import java.util.Map;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ProductDTO {
 
-    @Nullable
-    private Integer id;
-
     @NotNull(message = "Name may not be null")
     @NotEmpty(message = "Name may not be empty")
     @NotBlank(message = "Name may not be blank")
@@ -26,14 +23,6 @@ public class ProductDTO {
     private String description;
 
     private Map<String, String> properties = new HashMap<>();
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
