@@ -13,6 +13,8 @@ public class RequestDTO {
     @NotNull(message = "Name may not be null")
     private ProductDTO productDTO;
 
+    private String id;
+
     public boolean isFindOnlyByProperties() {
         return findOnlyByProperties;
     }
@@ -35,5 +37,13 @@ public class RequestDTO {
 
     public void setProductDTO(ProductDTO productDTO) {
         this.productDTO = productDTO;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

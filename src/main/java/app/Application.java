@@ -10,6 +10,7 @@ import org.springframework.web.filter.CommonsRequestLoggingFilter;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.transaction.TransactionManager;
 
 @SpringBootApplication
 public class Application {
@@ -28,6 +29,16 @@ public class Application {
         filter.setIncludeHeaders(false);
         filter.setAfterMessagePrefix("REQUEST DATA : ");
         return filter;
+    }
+
+    @Bean
+    EntityManagerFactory entityManagerFactory() {
+        return Persistence.createEntityManagerFactory("ogm-mongodb");
+    }
+
+    @Bean
+    TransactionManager transactionManager() {
+        return com.arjuna.ats.jta.TransactionManager.transactionManager();
     }
 
 }

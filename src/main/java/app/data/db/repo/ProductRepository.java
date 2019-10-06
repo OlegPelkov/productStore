@@ -1,17 +1,19 @@
 package app.data.db.repo;
 
 import app.data.db.entity.ProductEntity;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+import org.bson.types.ObjectId;
 
 import java.util.List;
+import java.util.Map;
 
-@Repository
-public interface ProductRepository extends CrudRepository<ProductEntity, Long>,
-        ProductPropertiesRepository<ProductEntity> {
+public interface ProductRepository {
 
-    ProductEntity findById(int id) throws Exception;
+    ProductEntity findById(ObjectId id) throws Exception;
 
-    List<ProductEntity> findByNameContaining(String nameStartsWith);
+    List<ProductEntity> findByNameContaining(String nameStartsWith) throws Exception;
+
+    ProductEntity save(ProductEntity productEntity) throws Exception;
+
+    List<ProductEntity> findProductsByParams(Map<String, String> params) throws Exception;
 
 }

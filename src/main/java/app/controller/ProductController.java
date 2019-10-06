@@ -4,6 +4,7 @@ import app.data.web.dto.ProductIdDTO;
 import app.data.web.dto.RequestDTO;
 import app.data.web.dto.ResponseDTO;
 import app.data.web.services.ProductService;
+import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.Collections;
 
 @RestController
 public class ProductController {
@@ -31,7 +33,7 @@ public class ProductController {
             ProductIdDTO productIdDTO = new ProductIdDTO(productID);
             return ResponseEntity.ok(productIdDTO);
         } catch (Exception e) {
-            LOG.error("{}",e);
+            LOG.error("{}", e);
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -41,7 +43,7 @@ public class ProductController {
         try {
             return ResponseEntity.ok(new ResponseDTO(productService.findProducts(requestDTO)));
         } catch (Exception e) {
-            LOG.error("{}",e);
+            LOG.error("{}", e);
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -49,9 +51,14 @@ public class ProductController {
     @PostMapping(value = "/findProductById", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity findProductById(@RequestBody RequestDTO requestDTO) {
         try {
-            return ResponseEntity.ok(new ResponseDTO(productService.findProducts(requestDTO)));
+            if (requestDTO.getId() != null && !requestDTO.getId().isEmpty()) {
+                ObjectId id = new ObjectId(requestDTO.getId());
+                return ResponseEntity.ok(new ResponseDTO(Collections.singletonList(productService.findProductById(id))));
+            } else {
+                return new ResponseEntity(HttpStatus.BAD_REQUEST);
+            }
         } catch (Exception e) {
-            LOG.error("{}",e);
+            LOG.error("{}", e);
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

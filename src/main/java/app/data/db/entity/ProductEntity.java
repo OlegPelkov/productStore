@@ -8,6 +8,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 @Entity
 @Table(name = "products")
@@ -28,8 +29,8 @@ public class ProductEntity {
     @NotNull(message = "Name may not be null")
     private String description;
 
-    @ElementCollection
-    @CollectionTable(name = "product_properties", joinColumns = @JoinColumn(name = "product_id"))
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "properties", joinColumns = @JoinColumn(name = "product_id"))
     @MapKeyColumn(name = "name")
     @Column(name = "value")
     private Map<String, String> properties = new HashMap<>();
@@ -71,5 +72,18 @@ public class ProductEntity {
 
     public void setProperties(Map<String, String> properties) {
         this.properties = properties;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProductEntity that = (ProductEntity) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

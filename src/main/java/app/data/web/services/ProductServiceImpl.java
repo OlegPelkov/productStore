@@ -4,6 +4,7 @@ import app.data.db.entity.ProductEntity;
 import app.data.db.repo.ProductRepository;
 import app.data.web.dto.ProductDTO;
 import app.data.web.dto.RequestDTO;
+import org.bson.types.ObjectId;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -25,13 +26,11 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
 
     @Override
-    @Transactional
     public ProductEntity createProduct(ProductDTO productDTO) throws Exception {
        return productRepository.save(modelMapper.map(modelMapper.map(productDTO, ProductEntity.class), ProductEntity.class));
     }
 
     @Override
-    @Transactional
     public List<ProductDTO> findProducts(RequestDTO requestDTO) throws Exception {
         Optional<String> name = Optional.ofNullable(requestDTO.getProductDTO().getName());
         Optional<Map<String, String>> params = Optional.ofNullable(requestDTO.getProductDTO().getProperties());
@@ -51,9 +50,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    @Transactional
-    public List<ProductDTO> findProductById(int id) throws Exception {
-        List<ProductEntity> productEntities = Stream.of(productRepository.findById(id)).collect(Collectors.toList());
-        return productEntities.stream().map(e -> modelMapper.map(e, ProductDTO.class)).collect(Collectors.toList());
+    public ProductDTO findProductById(ObjectId id) throws Exception {
+        ProductEntity productEntity = productRepository.findById(id);
+        return modelMapper.map(productEntity, ProductDTO.class);
     }
 }
