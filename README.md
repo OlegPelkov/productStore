@@ -1,5 +1,31 @@
-# productStore 
+# ProductStore 
 ## Микросервис с использованием SpringBoot/Hibernate/MongoDB
+
+## Команды Docker для запуска готового образа (Docker должен быть установлен)
+
+### 1. Запуск контейнера с MongoDB
+```
+docker run -d -p 27017:27017 mongo
+```
+### 2. Запуск контейнера с сервисом
+```
+docker run -p 9005:9005 --name olegpelkov/spring-mongo --link=mongo olegpelkov/spring-mongo
+```
+
+## Команды Docker для создания и запуска образа (Docker должен быть установлен)
+
+### 1. Создать образ 
+```
+docker build -t spring-mongo:latest .
+```
+### 2. Запуск контейнера с MongoDB
+```
+docker run -d -p 27017:27017 mongo
+```
+### 3. Запуск контейнера с сервисом
+```
+docker run -p 9005:9005 --name spring-mongo --link=mongo spring-mongo
+```
 
 ## REST API методы:
 ### Создать новый товар (в response body будет JSON c ID товара)
