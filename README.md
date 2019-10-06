@@ -1,7 +1,7 @@
 # ProductStore 
 ## Микросервис с использованием SpringBoot/Hibernate/MongoDB
 
-## Команды Docker для запуска готового образа (Docker должен быть установлен)
+## Команды Docker для запуска готового образа
 
 ### 1. Запуск контейнера с MongoDB
 ```
@@ -12,7 +12,7 @@ docker run -d -p 27017:27017 mongo
 docker run -p 9005:9005 --name olegpelkov/spring-mongo --link=mongo olegpelkov/spring-mongo
 ```
 
-## Команды Docker для создания и запуска образа (Docker должен быть установлен)
+## Команды Docker для создания и запуска образа
 
 ### 1. Создать образ 
 ```
