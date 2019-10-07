@@ -19,7 +19,7 @@ http://127.0.0.1:9005/findProduct
 ```
 ##### Пример JSON:
 ```
-{"productDTO":{"name":"phone","findOnlyByName":true}}
+{"productDTO":{"name":"phone"},"findOnlyByName":true}
 ```
 
 ### Поиск товара выбранному параметру и его значению
