@@ -31,7 +31,7 @@ docker run -d -p 27017:27017 mongo
 docker run -p 9005:9005 --name spring-mongo --link=mongo spring-mongo
 ```
 ## REST API методы:
-### Значение параметра host инициализировать через команду
+### Значение параметра host можно узнать через через команду
 ```
 docker-machine ip
 ```
