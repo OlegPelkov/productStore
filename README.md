@@ -67,7 +67,38 @@ http://192.168.99.100:9005/findProductById
 ```
 {"id": "5d99c63d1019162d8a38b521"}
 ```
-## Команды утилиты curl
+## Команды утилиты curl for Windows
+### Создать новый товар (в response body будет JSON c ID товара)
+```
+curl.exe -X POST ^
+-H "Content-Type: application/json" ^
+-d "{\"productDTO\":{\"name\":\"phone-B\",\"description\":\"B phone\",\"properties\":{\"battarySize\":250,\"weight\":\"3500\"}}}" ^
+"http://127.0.0.1:9005/createProduct"
+```
+### Поиск товара по названию
+```
+curl.exe -X POST ^
+-H "Content-Type: application/json" ^
+-d "{\"productDTO\":{\"name\":\"phone\"},\"findOnlyByName\":true}" ^
+"http://127.0.0.1:9005/findProduct"
+```
+### Поиск товара выбранному параметру и его значению
+```
+curl.exe -X POST ^
+-H "Content-Type: application/json" ^
+-d "{\"productDTO\":{\"properties\":{\"battarySize\":250,\"weight\":\"2500\"}},\"findOnlyByProperties\":true}" ^
+"http://127.0.0.1:9005/findProduct"
+```
+### Получить детали товара по ID
+```
+curl.exe -X POST ^
+-H "Content-Type: application/json" ^
+-d "{\"id\":\"5d9aff0769549e78c450da49\"}" ^
+"http://127.0.0.1:9005/findProductById"
+
+```
+
+## Команды утилиты curl for Linux
 ### Создать новый товар (в response body будет JSON c ID товара)
 ```
 curl -H "Content-Type: application/json" -X POST -d {"productDTO":{"name":"phone-B","description":"B phone","properties":{"battarySize":250,"weight":"3500"}}} http://192.168.99.100:9005/createProduct
