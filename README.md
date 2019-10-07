@@ -31,7 +31,7 @@ docker run -p 9005:9005 --name spring-mongo --link=mongo spring-mongo
 ### Создать новый товар (в response body будет JSON c ID товара)
 ##### REST метод:
 ```
-/createProduct
+http://192.168.99.100:9005/createProduct
 ```
 ##### Пример JSON:
 ```
@@ -41,7 +41,7 @@ docker run -p 9005:9005 --name spring-mongo --link=mongo spring-mongo
 ### Поиск товара по названию
 ##### REST метод:
 ```
-/findProduct
+http://192.168.99.100:9005/findProduct
 ```
 ##### Пример JSON:
 ```
@@ -51,7 +51,7 @@ docker run -p 9005:9005 --name spring-mongo --link=mongo spring-mongo
 ### Поиск товара выбранному параметру и его значению
 ##### REST метод:
 ```
-/findProduct
+http://192.168.99.100:9005/findProduct
 ```
 ##### Пример JSON:
 ```
@@ -61,7 +61,7 @@ docker run -p 9005:9005 --name spring-mongo --link=mongo spring-mongo
 ### Получить детали товара по ID
 ##### REST метод:
 ```
-/findProductById
+http://192.168.99.100:9005/findProductById
 ```
 ##### Пример JSON:
 ```
