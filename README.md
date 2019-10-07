@@ -101,18 +101,26 @@ curl.exe -X POST ^
 ## Команды утилиты curl for Linux
 ### Создать новый товар (в response body будет JSON c ID товара)
 ```
-curl -H "Content-Type: application/json" -X POST -d {"productDTO":{"name":"phone-B","description":"B phone","properties":{"battarySize":250,"weight":"3500"}}} http://192.168.99.100:9005/createProduct
+curl -X POST -H "Content-Type: application/json" \
+ -d '{"productDTO":{"name":"phone-A","description":"A phone","properties":{"battarySize":150,"weight":"2500"}}}' \
+http://127.0.0.1:9005/createProduct
 ```
 ### Поиск товара по названию
 ```
-curl -H "Content-Type: application/json" -X POST -d {"productDTO":{"name":"phone"},"findOnlyByName":true}  http://192.168.99.100:9005/findProduct
+curl -X POST -H "Content-Type: application/json" \
+ -d '{"productDTO":{"name":"phone"},"findOnlyByName":true}' \
+http://127.0.0.1:9005/findProduct
 ```
 ### Поиск товара выбранному параметру и его значению
 ```
-curl -H "Content-Type: application/json" -X POST -d {"productDTO":{"properties":{"battarySize":150,"weight":"2500"}},"findOnlyByProperties":true} http://192.168.99.100:9005/findProduct
+curl -X POST -H "Content-Type: application/json" \
+ -d '{"productDTO":{"properties":{"battarySize":150,"weight":"2500"}},"findOnlyByProperties":true}' \
+http://127.0.0.1:9005/findProduct
 ```
 ### Получить детали товара по ID
 ```
-curl -H "Content-Type: application/json" -X POST -d {"id": "5d99c63d1019162d8a38b521"} http://192.168.99.100:9005/findProductById
+curl -X POST -H "Content-Type: application/json" \
+ -d '{"id": "5d99c63d1019162d8a38b521"}' \
+http://127.0.0.1:9005/findProductById
 ```
 
