@@ -45,7 +45,7 @@ docker run -p 9005:9005 --name spring-mongo --link=mongo spring-mongo
 ```
 ##### Пример JSON:
 ```
-{"productDTO":{"name":"phone-A","findOnlyByName":true}
+{"productDTO":{"name":"phone","findOnlyByName":true}}
 ```
 
 ### Поиск товара выбранному параметру и его значению
@@ -74,7 +74,7 @@ curl -H "Content-Type: application/json" -X POST -d {"productDTO":{"name":"phone
 ```
 ### Поиск товара по названию
 ```
-curl -H "Content-Type: application/json" -X POST -d {"productDTO":{"name":"phone-A","findOnlyByName":true}  http://192.168.99.100:9005/findProduct
+curl -H "Content-Type: application/json" -X POST -d {"productDTO":{"name":"phone","findOnlyByName":true}}  http://192.168.99.100:9005/findProduct
 ```
 ### Поиск товара выбранному параметру и его значению
 ```
