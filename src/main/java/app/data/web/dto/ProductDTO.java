@@ -1,7 +1,6 @@
 package app.data.web.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import org.springframework.lang.Nullable;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
