@@ -26,12 +26,15 @@ docker run -d -p 27017:27017 mongo
 ```
 docker run -p 9005:9005 --name spring-mongo --link=mongo spring-mongo
 ```
-
 ## REST API методы:
+### Значение параметра host инициализировать через команду
+```
+docker-machine ip
+```
 ### Создать новый товар (в response body будет JSON c ID товара)
 ##### REST метод:
 ```
-http://192.168.99.100:9005/createProduct
+http://host:9005/createProduct
 ```
 ##### Пример JSON:
 ```
@@ -41,7 +44,7 @@ http://192.168.99.100:9005/createProduct
 ### Поиск товара по названию
 ##### REST метод:
 ```
-http://192.168.99.100:9005/findProduct
+http://host:9005/findProduct
 ```
 ##### Пример JSON:
 ```
@@ -51,7 +54,7 @@ http://192.168.99.100:9005/findProduct
 ### Поиск товара выбранному параметру и его значению
 ##### REST метод:
 ```
-http://192.168.99.100:9005/findProduct
+http://host:9005/findProduct
 ```
 ##### Пример JSON:
 ```
@@ -61,7 +64,7 @@ http://192.168.99.100:9005/findProduct
 ### Получить детали товара по ID
 ##### REST метод:
 ```
-http://192.168.99.100:9005/findProductById
+http://host:9005/findProductById
 ```
 ##### Пример JSON:
 ```
@@ -73,28 +76,28 @@ http://192.168.99.100:9005/findProductById
 curl.exe -X POST ^
 -H "Content-Type: application/json" ^
 -d "{\"productDTO\":{\"name\":\"phone-B\",\"description\":\"B phone\",\"properties\":{\"battarySize\":250,\"weight\":\"3500\"}}}" ^
-"http://127.0.0.1:9005/createProduct"
+"http://host:9005/createProduct"
 ```
 ### Поиск товара по названию
 ```
 curl.exe -X POST ^
 -H "Content-Type: application/json" ^
 -d "{\"productDTO\":{\"name\":\"phone\"},\"findOnlyByName\":true}" ^
-"http://127.0.0.1:9005/findProduct"
+"http://host:9005/findProduct"
 ```
 ### Поиск товара выбранному параметру и его значению
 ```
 curl.exe -X POST ^
 -H "Content-Type: application/json" ^
 -d "{\"productDTO\":{\"properties\":{\"battarySize\":250,\"weight\":\"2500\"}},\"findOnlyByProperties\":true}" ^
-"http://127.0.0.1:9005/findProduct"
+"http://host:9005/findProduct"
 ```
 ### Получить детали товара по ID
 ```
 curl.exe -X POST ^
 -H "Content-Type: application/json" ^
 -d "{\"id\":\"5d9aff0769549e78c450da49\"}" ^
-"http://127.0.0.1:9005/findProductById"
+"http://host:9005/findProductById"
 
 ```
 
@@ -103,24 +106,24 @@ curl.exe -X POST ^
 ```
 curl -X POST -H "Content-Type: application/json" \
  -d '{"productDTO":{"name":"phone-A","description":"A phone","properties":{"battarySize":150,"weight":"2500"}}}' \
-http://127.0.0.1:9005/createProduct
+http://host:9005/createProduct
 ```
 ### Поиск товара по названию
 ```
 curl -X POST -H "Content-Type: application/json" \
  -d '{"productDTO":{"name":"phone"},"findOnlyByName":true}' \
-http://127.0.0.1:9005/findProduct
+http://host:9005/findProduct
 ```
 ### Поиск товара выбранному параметру и его значению
 ```
 curl -X POST -H "Content-Type: application/json" \
  -d '{"productDTO":{"properties":{"battarySize":150,"weight":"2500"}},"findOnlyByProperties":true}' \
-http://127.0.0.1:9005/findProduct
+http://host:9005/findProduct
 ```
 ### Получить детали товара по ID
 ```
 curl -X POST -H "Content-Type: application/json" \
  -d '{"id": "5d99c63d1019162d8a38b521"}' \
-http://127.0.0.1:9005/findProductById
+http://host:9005/findProductById
 ```
 
