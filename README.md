@@ -14,15 +14,19 @@ docker run -p 9005:9005 --name olegpelkov/spring-mongo --link=mongo olegpelkov/s
 
 ## Команды Docker для создания и запуска образа
 
-### 1. Создать образ 
+### 1. Скомпилировать jar
+```
+gradle clean build
+```
+### 2 Создать образ 
 ```
 docker build -t spring-mongo:latest .
 ```
-### 2. Запуск контейнера с MongoDB
+### 3 Запуск контейнера с MongoDB
 ```
 docker run -d -p 27017:27017 mongo
 ```
-### 3. Запуск контейнера с сервисом
+### 4 Запуск контейнера с сервисом
 ```
 docker run -p 9005:9005 --name spring-mongo --link=mongo spring-mongo
 ```
